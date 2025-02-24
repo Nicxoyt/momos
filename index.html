@@ -93,7 +93,7 @@
         }
 
         .progress-bar {
-            width: 80%;
+            width: 60%;
             height: 3px;
             background: #282828;
             border-radius: 3px;
@@ -120,15 +120,18 @@
             cursor: pointer;
         }
 
-        .coming-soon {
+        .warning {
             text-align: center;
-            margin-top: 20px;
-            font-size: 14px;
-            color: #A3A3A3;
+            padding: 10px;
+            background: #ffcc00;
+            color: #000;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
+    <div class="warning">Advertencia: Esta página está en estado de prueba, se puede encontrar con muchos problemas.</div>
+    
     <div class="container">
         <img src="pene.jpg" alt="Portada del álbum" class="album-cover">
         
@@ -139,15 +142,14 @@
         </div>
 
         <ul class="song-list">
-            <li>Momo Inolvidable <span class="play-icon" onclick="playSong()">▶</span></li>
-            <li>Canción 2 (Próximamente)</li>
-            <li>Canción 3 (Próximamente)</li>
-            <li>Canción 4 (Próximamente)</li>
-            <li>Canción 5 (Próximamente)</li>
-            <li>Canción 6 (Próximamente)</li>
+            <li>Momo Inolvidable <span class="play-icon" onclick="playSong('olvidable.mp3')">▶</span></li>
+            <li>Momos OG <span class="play-icon" onclick="playSong('momosog.mp3')">▶</span></li>
+            <li>Momos Nuevos <span class="play-icon" onclick="playSong('momosnuevos.mp3')">▶</span></li>
+            <li>[Próxima Canción] <span class="play-icon">🔒</span></li>
+            <li>[Próxima Canción] <span class="play-icon">🔒</span></li>
         </ul>
         
-        <audio id="audio" src="olvidable.mp3" ontimeupdate="updateProgress()" onended="resetPlayer()"></audio>
+        <audio id="audio" ontimeupdate="updateProgress()" onended="resetPlayer()"></audio>
     </div>
 
     <div class="player" id="player">
@@ -161,7 +163,7 @@
         </div>
     </div>
 
-    <p class="coming-soon">Próximamente en abril...</p>
+    <p style="text-align: center; padding: 20px; color: #A3A3A3;">Próximamente en abril...</p>
 
     <script>
         let audio = document.getElementById('audio');
@@ -170,7 +172,8 @@
         let time = document.getElementById('time');
         let isLooping = false;
 
-        function playSong() {
+        function playSong(src) {
+            audio.src = src;
             audio.play();
             player.style.display = 'flex';
         }
